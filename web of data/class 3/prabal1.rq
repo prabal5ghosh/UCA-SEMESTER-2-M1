@@ -1,0 +1,9 @@
+prefix h: <http://ns.inria.fr/humans/schema#>
+select * where { ?s1 h:hasSpouse ?o1
+minus {?s1 h:hasChild ?o2 .
+	}
+minus {?o3 h:hasParent ?s1 }
+minus {?o3 h:hasParent ?o1 }
+minus {?o1 h:hasChild ?o2 }
+
+}
