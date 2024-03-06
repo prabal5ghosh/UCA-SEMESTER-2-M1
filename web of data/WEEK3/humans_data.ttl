@@ -1,5 +1,5 @@
-# @prefix : <http://ns.inria.fr/humans/schema#> .
-@prefix :     <http://ns.inria.fr/humans/ontology#> . 
+@prefix : <http://ns.inria.fr/humans/schema#> .
+# @prefix :     <http://ns.inria.fr/humans/ontology#> . 
 
 @prefix d: <http://ns.inria.fr/humans/data#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -105,4 +105,7 @@ d:John a :Person ;
 
 d:UCA a :University.
 d:Paul a :Lecturer, :Researcher;
-    :mainEmployer d:UCA .
+    :mainEmployer d:UCA ;
+    :age 37 ;
+    :age 57 ;
+    :name "prabal ghosh" .

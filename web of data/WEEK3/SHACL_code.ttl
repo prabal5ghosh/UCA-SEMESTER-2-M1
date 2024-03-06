@@ -1,0 +1,87 @@
+prefix sh: <http://www.w3.org/ns/shacl#>
+
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix :     <http://ns.inria.fr/humans/schema#> .
+@prefix ex:     <http://ns.inria.fr/humans/shapes#> . 
+
+# @prefix :     <http://ns.inria.fr/humans/ontology#> . 
+
+
+# Target instances of class Person :
+# the name property has datatype string ;
+# the age property has datatype integer, it must have one value.
+# the hasAncestor property has class Person.
+
+ex:test1 a sh:NodeShape ;
+sh:targetClass :Person ;
+sh:property [
+        sh:path :name ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxLength 7;
+        sh:or ([sh:datatype xsd:string] [sh:datatype rdf:langString]);
+        sh:and ([sh:datatype xsd:string] [sh:languageIn ("fr" "en") ])
+];
+sh:property [
+        sh:path :age ;
+        sh:datatype xsd:integer ;
+        sh:minCount 1 ;
+        sh:maxCount 1 
+
+]  ;
+sh:property [
+    sh:path :hasAncestor ;
+    sh:class :Person
+] .
+
+
+
+# Shape 2
+# Target objects of property hasFriend:
+# the node kind of objects is sh:IRI,
+# the objects contains the pattern "human"
+
+ 
+
+ex:test2
+	a sh:NodeShape ;
+	sh:targetObjectsOf :hasFriend ;
+	sh:nodeKind sh:IRI ;
+    sh:pattern "human" .
+
+
+
+# Shape 3
+# Target instances of class Person,
+# Write the path expression for: hasAncestor+
+# state that it has class Person and that it must have one value.
+
+
+# ex:test2 a sh:NodeShape ;
+# sh:targetClass :Person ;
+# sh:property [
+# sh:targetNode us:John, us:Jac
+# ]
+
+
+# Shape 4
+# Write a path expression for hasFriend*/hasChild.
+# Write a path expression for hasAncestor|hasChild.
+
+
+
+
+# Shape 5
+# State that hasAncestor and hasChild properties are disjoint
+
+# Shape 6
+# Target instances of class Person,
+# the hasParent property has one value of type Male and one value of type Female
+
+# Hint:
+
+# sh:qualifiedMinCount 1 ;
+# sh:qualifiedValueShape [ sh:class XXX ]
